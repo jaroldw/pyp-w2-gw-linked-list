@@ -17,12 +17,7 @@ class LinkedList(AbstractLinkedList):
                 self.append(elem)
 
     def __str__(self):
-        elements = []
-
-        for elem in self:
-            elements.append(elem)
-
-        return str(elements)
+        return str([elem for elem in self])
 
     def __len__(self):
         length = 0
