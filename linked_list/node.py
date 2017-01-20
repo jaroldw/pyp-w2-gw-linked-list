@@ -14,7 +14,7 @@ class Node(object):
             return "Node({}) > /".format(self.elem)
 
     def __eq__(self, other):
-        return self.elem == other.elem
+        return self.elem == other.elem and self.next == other.next
 
     def __repr__(self):
         return "Node({})".format(self.elem)

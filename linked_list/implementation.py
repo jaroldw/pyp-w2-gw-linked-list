@@ -99,7 +99,11 @@ class LinkedList(AbstractLinkedList):
 
     def pop(self, index=None):
         # pop on empty linkedlist or invalid index
-        if len(self) == 0 or int(index) >= len(self):
+
+        if index is None:
+            index = len(self) - 1
+
+        if len(self) == 0 or index >= len(self):
             raise IndexError
 
         # removing first item
@@ -116,7 +120,7 @@ class LinkedList(AbstractLinkedList):
             return elem
 
         # removing last item
-        if index is None or index == len(self) - 1:
+        if index == len(self) - 1:
             prev_node = None
             current_node = self.start
 
