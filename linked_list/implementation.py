@@ -8,7 +8,6 @@ class LinkedList(AbstractLinkedList):
     """
 
     def __init__(self, elements=None):
-        # [Node(1)==[headNode] -> Node(2) -> Node(3) -> end]
         self.start = None
         self.end = None
         self.elems = []
@@ -88,8 +87,6 @@ class LinkedList(AbstractLinkedList):
         return len(self)
 
     def pop(self, index=None):
-        # pop on empty linkedlist or invalid index
-
         if index is None:
             index = len(self) - 1
 
@@ -102,38 +99,14 @@ class LinkedList(AbstractLinkedList):
             self.start = self.start.next
             return elem
 
-        # single item list
-        if len(self) == 1:
-            elem = self.end.elem
-            self.start = None
-            self.end = None
-            return elem
+        prev_node = None
+        current_node = self.start
+        counter = 0
 
-        # removing last item
-        if index == len(self) - 1:
-            prev_node = None
-            current_node = self.start
-
-            for elem in self:
-                if elem == self.end.elem:
-                    self.end = prev_node
-                    self.end.next = None
-                    continue
-                prev_node = current_node
-                current_node = current_node.next
-
-            return current_node.elem
-
-        # item in middle of list
-        if index < len(self) - 1:
-            prev_node = None
-            current_node = self.start
-
-            for i in range(0, index):
-                prev_node = current_node
-                current_node = current_node.next
-
-            elem = current_node.elem
-            prev_node.next = current_node.next
-
-            return elem
+        while True:
+            if counter == index:
+                prev_node.next = current_node.next
+                return current_node.elem
+            prev_node = current_node
+            current_node = current_node.next
+            counter += 1
