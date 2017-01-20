@@ -36,14 +36,9 @@ class LinkedList(AbstractLinkedList):
         if index > len(self) - 1:
             raise IndexError
 
-        prev_node = None
-        current_node = self.start
-
-        for i in range(0, index):
-            prev_node = current_node
-            current_node = current_node.next
-
-        return current_node.elem
+        for i, elem in enumerate(self):
+            if i == index:
+                return elem
 
     def __add__(self, other):
         new = LinkedList([elem for elem in self])
